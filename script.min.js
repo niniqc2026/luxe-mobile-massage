@@ -118,4 +118,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Scroll Indicator fade on scroll ---
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    if (scrollIndicator) {
+        window.addEventListener('scroll', () => {
+            scrollIndicator.classList.toggle('hidden', window.scrollY > 100);
+        });
+    }
+
+    // --- Social Proof Ticker ---
+    const tickerEl = document.getElementById('tickerMessage');
+    if (tickerEl) {
+        const messages = [
+            '14 sessions booked today in Las Vegas',
+            'Last booking just 8 minutes ago',
+            'Therapists currently available on the Strip',
+            '5-star rated on Google — 100% satisfaction',
+            'Serving Bellagio, Wynn, Venetian & more tonight'
+        ];
+        let msgIndex = 0;
+        tickerEl.textContent = messages[0];
+
+        setInterval(() => {
+            tickerEl.classList.add('fade-out');
+            setTimeout(() => {
+                msgIndex = (msgIndex + 1) % messages.length;
+                tickerEl.textContent = messages[msgIndex];
+                tickerEl.classList.remove('fade-out');
+            }, 400);
+        }, 3500);
+    }
+
+    // --- Animated Stats Counter ---
+    const statNums = document.querySelectorAll('.stat-num[data-count]');
+    if (statNums.length) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNums.forEach(el => statsObserver.observe(el));
+
+        function animateCounter(el) {
+            const target = parseFloat(el.dataset.count);
+            const suffix = el.dataset.suffix || '';
+            const isDecimal = el.dataset.decimal === 'true';
+            const duration = 1800;
+            const start = performance.now();
+            el.classList.add('counting');
+
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                let current = eased * target;
+
+                if (isDecimal) {
+                    current = current.toFixed(1);
+                } else {
+                    current = Math.floor(current);
+                    if (current >= 1000) {
+                        current = current.toLocaleString();
+                    }
+                }
+
+                el.textContent = current + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.classList.remove('counting');
+                }
+            }
+            requestAnimationFrame(update);
+        }
+    }
+
 });

@@ -3098,3 +3098,358 @@ noscript .fade-in,
         width: 40px;
     }
 }
+
+/* ========================================
+   NEW: Scroll Indicator, Social Proof,
+   Neon Divider, How-It-Works Upgrade,
+   SVG Icons, Stats Counter
+   ======================================== */
+
+/* --- Scroll Indicator --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-text {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+}
+
+.scroll-arrow {
+    color: var(--gold);
+    animation: scroll-bounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px var(--gold-glow-strong));
+}
+
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* --- Social Proof Ticker --- */
+.social-proof-ticker {
+    background: linear-gradient(90deg, rgba(255, 45, 123, 0.05), rgba(201, 169, 110, 0.08), rgba(0, 212, 255, 0.05));
+    border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+    padding: 12px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ticker-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ticker-icon {
+    color: var(--neon-blue);
+    flex-shrink: 0;
+    animation: neon-pulse 3s ease-in-out infinite;
+}
+
+.ticker-message {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    min-width: 200px;
+    transition: opacity 0.4s ease;
+}
+
+.ticker-message.fade-out {
+    opacity: 0;
+}
+
+/* --- Neon Divider Strip --- */
+.neon-divider-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--bg-dark);
+}
+
+.neon-line {
+    flex: 1;
+    max-width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-pink), var(--gold), var(--neon-blue), transparent);
+    box-shadow: 0 0 8px var(--neon-pink-glow), 0 0 16px rgba(201, 169, 110, 0.15);
+    animation: neon-line-glow 4s ease-in-out infinite;
+}
+
+.neon-diamond {
+    color: var(--gold);
+    filter: drop-shadow(0 0 6px var(--gold-glow-strong));
+    animation: icon-bounce 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+/* --- How-It-Works Upgrade --- */
+.how-it-works-strip {
+    background: linear-gradient(180deg, var(--bg-section), rgba(15, 12, 8, 1), var(--bg-section));
+    border-top: 1px solid rgba(201, 169, 110, 0.12);
+    border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+    padding: 40px 0;
+}
+
+.hiw-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    padding: 16px 20px;
+    background: rgba(201, 169, 110, 0.03);
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    border-radius: var(--radius);
+    transition: all 0.4s ease;
+}
+
+.hiw-step:hover {
+    background: rgba(201, 169, 110, 0.06);
+    border-color: rgba(201, 169, 110, 0.25);
+    box-shadow: 0 0 20px rgba(201, 169, 110, 0.08);
+    transform: translateY(-2px);
+}
+
+.hiw-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    color: var(--gold);
+    filter: drop-shadow(0 0 4px var(--gold-glow-strong));
+}
+
+.hiw-icon svg {
+    stroke: var(--gold);
+    filter: drop-shadow(0 0 4px var(--gold-glow-strong));
+}
+
+.hiw-arrow {
+    position: absolute;
+    right: -36px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    opacity: 0.4;
+}
+
+.hiw-arrow svg {
+    stroke: var(--gold);
+}
+
+/* --- SVG Icon Styling for Service Cards --- */
+.service-icon svg {
+    stroke: var(--gold);
+    filter: drop-shadow(0 0 6px var(--gold-glow));
+    transition: all 0.4s ease;
+}
+
+.service-card:hover .service-icon svg {
+    stroke: var(--gold-light);
+    filter: drop-shadow(0 0 12px var(--gold-glow-strong));
+    transform: scale(1.1);
+}
+
+/* --- SVG Icon Styling for Vegas Experience Cards --- */
+.vegas-exp-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.vegas-exp-icon svg {
+    stroke: var(--neon-pink);
+    filter: drop-shadow(0 0 8px var(--neon-pink-glow));
+    transition: all 0.4s ease;
+}
+
+.vegas-exp-card:nth-child(2) .vegas-exp-icon svg {
+    stroke: var(--neon-blue);
+    filter: drop-shadow(0 0 8px var(--neon-blue-glow));
+}
+
+.vegas-exp-card:nth-child(3) .vegas-exp-icon svg {
+    stroke: var(--neon-purple);
+    filter: drop-shadow(0 0 8px var(--neon-purple-glow));
+}
+
+.vegas-exp-card:nth-child(4) .vegas-exp-icon svg {
+    stroke: var(--gold);
+    filter: drop-shadow(0 0 8px var(--gold-glow-strong));
+}
+
+.vegas-exp-card:hover .vegas-exp-icon svg {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 16px var(--neon-pink-glow));
+}
+
+.vegas-exp-card:nth-child(2):hover .vegas-exp-icon svg {
+    filter: drop-shadow(0 0 16px var(--neon-blue-glow));
+}
+
+.vegas-exp-card:nth-child(3):hover .vegas-exp-icon svg {
+    filter: drop-shadow(0 0 16px var(--neon-purple-glow));
+}
+
+.vegas-exp-card:nth-child(4):hover .vegas-exp-icon svg {
+    filter: drop-shadow(0 0 16px var(--gold-glow-strong));
+}
+
+/* --- Vegas Badge SVG --- */
+.vegas-badge-svg {
+    color: var(--gold);
+    fill: var(--gold);
+    filter: drop-shadow(0 0 4px var(--gold-glow-strong));
+    animation: icon-bounce 2s ease-in-out infinite;
+}
+
+/* --- Stats Counter Animation --- */
+.stat-num {
+    transition: color 0.3s ease;
+}
+
+.stat-num.counting {
+    color: var(--gold-light);
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: 20px;
+    }
+
+    .scroll-text {
+        font-size: 10px;
+    }
+
+    .social-proof-ticker {
+        padding: 10px 16px;
+    }
+
+    .ticker-message {
+        font-size: 12px;
+        min-width: auto;
+    }
+
+    .neon-divider-strip {
+        padding: 14px 16px;
+    }
+
+    .neon-line {
+        max-width: 100px;
+    }
+
+    .hiw-arrow {
+        display: none;
+    }
+
+    .hiw-step {
+        padding: 14px 16px;
+    }
+
+    .vegas-exp-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* --- Payment Methods --- */
+.payment-methods {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.payment-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.payment-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.payment-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    min-width: 100px;
+    transition: all 0.3s ease;
+}
+
+.payment-item:hover {
+    border-color: rgba(201, 169, 110, 0.3);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(201, 169, 110, 0.08);
+}
+
+.payment-icon {
+    stroke: var(--gold);
+    filter: drop-shadow(0 0 4px var(--gold-glow));
+}
+
+.payment-item span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.payment-item:hover span {
+    color: var(--gold-light);
+}
+
+@media (max-width: 768px) {
+    .payment-grid {
+        gap: 10px;
+    }
+
+    .payment-item {
+        min-width: 80px;
+        padding: 12px 14px;
+    }
+
+    .payment-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .payment-item span {
+        font-size: 10px;
+    }
+}
